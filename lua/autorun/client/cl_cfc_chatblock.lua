@@ -16,15 +16,20 @@ local function nameToSteamID( string )
     end
 end
 
+local function addLines( ply )
+    if ply == LocalPlayer() then return end
+    local name = ply:GetName()
+    local steamID = nameToSteamID( name )
+    if blockedPlayers[steamID] then
+        blockList:AddLine( name, "true" )
+    else
+        blockList:AddLine( name, "false" )
+    end
+end
+
 local function updateBlockList()
     for _, ply in ipairs( player.GetHumans() ) do
-        local name = ply:GetName()
-        local steamID = nameToSteamID( name )
-        if blockedPlayers[steamID] then
-            blockList:AddLine( name, "true" )
-        else
-            blockList:AddLine( name, "false" )
-        end
+        addLines( ply )
     end
 end
 
@@ -34,7 +39,6 @@ local function updateFile()
 end
 
 hook.Add( "OnPlayerChat", "CFC_ChatBlock_CheckPlayer", function( ply )
-    PrintTable( blockedPlayers )
     if blockedPlayers[ply:SteamID()] then
         return true
     end
