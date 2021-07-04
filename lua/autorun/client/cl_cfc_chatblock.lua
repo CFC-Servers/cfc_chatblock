@@ -18,8 +18,10 @@ end
 
 local function addLines( ply )
     if ply == LocalPlayer() then return end
+
     local name = ply:GetName()
     local steamID = nameToSteamID( name )
+
     if blockedPlayers[steamID] then
         blockList:AddLine( name, "true" )
     else
@@ -28,6 +30,9 @@ local function addLines( ply )
 end
 
 local function updateBlockList()
+    if not blockList then return end
+    blockList:Clear()
+
     for _, ply in ipairs( player.GetHumans() ) do
         addLines( ply )
     end
@@ -93,4 +98,4 @@ hook.Add( "PopulateToolMenu", "CFC_ChatBlock_PopulateToolMenu", function()
 end)
 
 hook.Add( "PlayerConnect", "CFC_ChatBlock_PlayerConnect", updateBlockList )
-hook.Add( "player_disconnect", "player_disconnect_example", fupdateBlockList )
+hook.Add( "player_disconnect", "player_disconnect_example", updateBlockList )
