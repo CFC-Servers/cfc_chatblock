@@ -99,4 +99,3 @@ end)
 
 hook.Add( "PlayerConnect", "CFC_ChatBlock_PlayerConnect", updateBlockList )
 hook.Add( "player_disconnect", "player_disconnect_example", updateBlockList )
---test
