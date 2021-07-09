@@ -51,7 +51,7 @@ end)
 
 hook.Add( "AddToolMenuCategories", "CFC_ChatBlock_AddToolMenuCategories", function()
     spawnmenu.AddToolCategory( "Options", "CFC", "#CFC" )
-end )
+end)
 
 hook.Add( "PopulateToolMenu", "CFC_ChatBlock_PopulateToolMenu", function()
     spawnmenu.AddToolMenuOption( "Options", "CFC", "cfc_chatblock", "#Block list", "", "", function( panel )
