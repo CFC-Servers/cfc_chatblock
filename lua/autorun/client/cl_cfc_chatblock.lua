@@ -44,7 +44,7 @@ local function updateFile()
 end
 
 hook.Add( "OnPlayerChat", "CFC_ChatBlock_CheckPlayer", function( ply )
-    if not ply:IsPlayer() then return end
+    if not IsValid( ply ) or not ply:IsPlayer() then return end
     if blockedPlayers[ply:SteamID()] then
         return true
     end
