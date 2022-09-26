@@ -48,11 +48,11 @@ hook.Add( "OnPlayerChat", "CFC_ChatBlock_CheckPlayer", function( ply )
     if blockedPlayers[ply:SteamID()] then
         return true
     end
-end)
+end )
 
 hook.Add( "AddToolMenuCategories", "CFC_ChatBlock_AddToolMenuCategories", function()
     spawnmenu.AddToolCategory( "Options", "CFC", "#CFC" )
-end)
+end )
 
 hook.Add( "PopulateToolMenu", "CFC_ChatBlock_PopulateToolMenu", function()
     spawnmenu.AddToolMenuOption( "Options", "CFC", "cfc_chatblock", "#Block list", "", "", function( panel )
@@ -95,8 +95,8 @@ hook.Add( "PopulateToolMenu", "CFC_ChatBlock_PopulateToolMenu", function()
             updateFile()
         end
         panel:AddItem( toggleButton )
-    end)
-end)
+    end )
+end )
 
 hook.Add( "PlayerConnect", "CFC_ChatBlock_PlayerConnect", updateBlockList )
 hook.Add( "player_disconnect", "player_disconnect_example", updateBlockList )
